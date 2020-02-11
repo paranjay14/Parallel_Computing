@@ -14,7 +14,7 @@ int main(int argc, char ** argv)
     // int *data1 = (int*) malloc(sizeof(int) * N);
     // int *data2 = (int*) malloc(sizeof(int) * N/2);
     int *data = (int*) malloc(sizeof(int) * N);
-    double maxTime, timeTaken, timeStart, timeEnd;
+    double minTime, maxTime, timeTaken, timeStart, timeEnd;
     MPI_Status status;
 
     while(tmpSize != 1){
@@ -69,13 +69,15 @@ int main(int argc, char ** argv)
     /* time Ends */
     timeEnd = MPI_Wtime();
 
-    timeTaken = timeEnd-timeStart;
-    MPI_Reduce(&timeTaken, &maxTime, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+    barrier = MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Reduce(&timeStart,&minTime,1,MPI_DOUBLE,MPI_MIN,0,MPI_COMM_WORLD);
+    MPI_Reduce(&timeEnd,&maxTime,1,MPI_DOUBLE,MPI_MAX,0,MPI_COMM_WORLD);
 
     if(rank == 0){
+        timeTaken = maxTime-minTime;
         // printf("Total Sum = %d\n", localSum);
         // printf("Total Time Taken = ");
-        printf("%f\n", maxTime);
+        printf("%f\n", timeTaken);
     }
 
     MPI_Finalize();
