@@ -49,7 +49,7 @@ int main(int argc, char ** argv)
             fullbVector[i] = 1;
             matrix[i] = &(fullData[N*i]);
             for (int j = 0; j < N; ++j)
-                matrix[i][j] = i;
+                matrix[i][j] = 1;
         }
     }
     else matrix = (int**) malloc(sizeof(int*));
