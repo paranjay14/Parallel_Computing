@@ -50,7 +50,7 @@ int main(int argc, char ** argv)
     }
     timeEnd = MPI_Wtime();
 
-    barrier = MPI_Barrier(MPI_COMM_WORLD);
+    // barrier = MPI_Barrier(MPI_COMM_WORLD);
     MPI_Reduce(&timeStart,&minTime,1,MPI_DOUBLE,MPI_MIN,0,MPI_COMM_WORLD);
     MPI_Reduce(&timeEnd,&maxTime,1,MPI_DOUBLE,MPI_MAX,0,MPI_COMM_WORLD);
 

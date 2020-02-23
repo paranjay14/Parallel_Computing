@@ -36,7 +36,7 @@ int main(int argc, char ** argv)
             tmpSum += data2[i];
     }
 
-    barrier = MPI_Barrier(MPI_COMM_WORLD);
+    // barrier = MPI_Barrier(MPI_COMM_WORLD);
     MPI_Reduce(&tmpSum,&finalSum,1,MPI_INT,MPI_SUM,0,MPI_COMM_WORLD);
 
     timeEnd = MPI_Wtime();
