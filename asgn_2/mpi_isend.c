@@ -21,7 +21,7 @@ int main(int argc, char ** argv)
 
     timeStart = MPI_Wtime();
         
-    MPI_Irsend(data,N,MPI_INT,(rank+1)%size, 0, MPI_COMM_WORLD, &request);
+    MPI_Isend(data,N,MPI_INT,(rank+1)%size, 0, MPI_COMM_WORLD, &request);
     MPI_Irecv(recv_data,N,MPI_INT, (rank+size-1)%size, 0, MPI_COMM_WORLD, &request2);
 
     MPI_Wait(&request, MPI_STATUS_IGNORE);
