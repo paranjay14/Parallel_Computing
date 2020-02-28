@@ -7,12 +7,12 @@ Iter=$4
 mpicc addNum_Naive.c -o mpiNai
 mpicc addNum_Recur.c -o mpiRec
 mpicc addNum_Reduce.c -o mpiRed
-mpicc odd_even_sorting.c -o mpiOes
+# mpicc odd_even_sorting.c -o mpiOes
 
 s0=0
 s1=0
 s2=0
-s3=0
+# s3=0
 > $3
 
 for (( i=1; i<=$Iter; i++ ))
@@ -31,9 +31,9 @@ do
     echo $t2 >> $3
     s2=`echo $s2 + $t2 | bc -l`
 
-    t3=`mpiexec -n $2 ./mpiOes $1`
-    echo $t3 >> $3
-    s3=`echo $s3 + $t3 | bc -l`
+    # t3=`mpiexec -n $2 ./mpiOes $1`
+    # echo $t3 >> $3
+    # s3=`echo $s3 + $t3 | bc -l`
 done
 
 echo " " >> $3
@@ -41,9 +41,9 @@ echo "Mean Values :- " >> $3
 s0=`echo $s0 / $Iter | bc -l  | grep -o '.*[1-9]'`
 s1=`echo $s1 / $Iter | bc -l  | grep -o '.*[1-9]'`
 s2=`echo $s2 / $Iter | bc -l  | grep -o '.*[1-9]'`
-s3=`echo $s3 / $Iter | bc -l  | grep -o '.*[1-9]'`
+# s3=`echo $s3 / $Iter | bc -l  | grep -o '.*[1-9]'`
 
 echo $s0 >> $3
 echo $s1 >> $3
 echo $s2 >> $3
-echo $s3 >> $3
+# echo $s3 >> $3
