@@ -9,7 +9,7 @@ do
 	    then
 	    	bash runScript.sh $i $p iter_${i}_${p}.txt 4
 	    else
-	    	bash runScript.sh $i $p iter_${i}_${p}.txt 4
+	    	bash runScript.sh $i $p iter_${i}_${p}.txt 10
 	    fi
 	done
 done
