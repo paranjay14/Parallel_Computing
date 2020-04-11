@@ -41,7 +41,7 @@ int main(int argc, char ** argv)
 					partialMatrix[i/P][j] = tmpval;
 			}
 			
-        	if(indx != 0) MPI_Send(&(matrix[i][0]), N, MPI_FLOAT, indx, 0, MPI_COMM_WORLD);
+        	if(P!=1 && indx!=0) MPI_Send(&(matrix[i][0]), N, MPI_FLOAT, indx, 0, MPI_COMM_WORLD);
 		}
 	}
 	else{
@@ -71,7 +71,7 @@ int main(int argc, char ** argv)
 				passArray[cnt++] = tmpval;
 			}
 
-			MPI_Send(passArray, sz, MPI_FLOAT, (rank<P-1)?(rank+1):(0), indx, MPI_COMM_WORLD);
+			if(P!=1) MPI_Send(passArray, sz, MPI_FLOAT, (rank<P-1)?(rank+1):(0), indx, MPI_COMM_WORLD);
 
 			for (int i = topRowNum+1; i < x; ++i){			
 				pivot = partialMatrix[i][offset];
@@ -102,8 +102,10 @@ int main(int argc, char ** argv)
 	if(rank==P-1) partialMatrix[x-1][N-1]=1;
 	// 	MPI_Barrier(MPI_COMM_WORLD);
 
-	for (int i = 0; i < x; ++i)
-    	MPI_Gather(&(partialMatrix[i][0]), N, MPI_FLOAT, &(matrix[i*P][0]), N, MPI_FLOAT, 0, MPI_COMM_WORLD);	
+	for (int i = 0; i < x; ++i){
+    	if(rank!=0) MPI_Gather(&(partialMatrix[i][0]), N, MPI_FLOAT, NULL, 0, MPI_FLOAT, 0, MPI_COMM_WORLD);	
+    	else MPI_Gather(&(partialMatrix[i][0]), N, MPI_FLOAT, &(matrix[i*P][0]), N, MPI_FLOAT, 0, MPI_COMM_WORLD);	
+	}
 
     timeEnd = MPI_Wtime();
 
