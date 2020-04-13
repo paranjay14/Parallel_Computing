@@ -36,7 +36,7 @@ void *PolyMul(void *t)
 		indx+=NUM_THREADS;
 	}
 	
-	pthread_exit((void*) t);
+	pthread_exit(NULL);
 }
 
 
@@ -49,7 +49,6 @@ int main (int argc, char *argv[])
 	pthread_attr_t attr;
 	long t, i;
 	int rc;
-	void *status;
 	A = (int*)malloc(sizeof(int)*N);
 	B = (int*)malloc(sizeof(int)*N);
 	C = (ll*)malloc(sizeof(ll)*2*(N-1));
@@ -77,7 +76,7 @@ int main (int argc, char *argv[])
 	/* Free attribute and wait for the other threads */
 	pthread_attr_destroy(&attr);
 	for(t=0; t<NUM_THREADS; t++){
-		rc = pthread_join(thread[t], &status);
+		rc = pthread_join(thread[t],NULL);
 		if (rc) {
 			exit(-1);
 		}
