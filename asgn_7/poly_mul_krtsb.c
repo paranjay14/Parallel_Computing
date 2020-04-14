@@ -29,7 +29,7 @@ void *PolyMulKaratsuba(void *thread_arg)
 	int tmpFull=2*(rA-lA), tmpHalfx2=2*tmpHalf;
 
 
-	// stores the final result for the current recursion
+	/* stores the final result for the current recursion */
 	int *tmpPartialC = (int*)malloc(sizeof(int)*(tmpFull+1));
 
 	/************ Base Case ************/
