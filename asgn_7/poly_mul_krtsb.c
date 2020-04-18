@@ -127,7 +127,7 @@ int main (int argc, char *argv[])
 	int *arrayA, *arrayB, *arrayC;
 	arrayA = (int*)malloc(sizeof(int)*N);
 	arrayB = (int*)malloc(sizeof(int)*N);
-	arrayC = (int*)malloc(sizeof(int)*2*(N-1));
+	arrayC = (int*)malloc(sizeof(int)*(2*N-1));
 	MAXLEVEL = atoi(argv[1]);;
 
 	for (int i = 0; i < N; ++i){
