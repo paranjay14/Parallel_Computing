@@ -1,14 +1,14 @@
 #include <iostream>
 #include <atomic>
+#include <thread>
+#include <chrono>
 #include <pthread.h>
-#include<chrono>
-#include<thread>
 
 using namespace std;
 
 extern int FULLSIZE;
-struct node_t;
 struct pointer_t;
+struct node_t;
 struct queue_t;
 
 typedef struct pointer_t{
