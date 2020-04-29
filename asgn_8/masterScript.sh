@@ -63,7 +63,7 @@ do
 done
 
 
-cd ..
-git add .
-git commit -m "Asgn_8 all files added!"
-git push
+# cd ..
+# git add .
+# git commit -m "Asgn_8 all files added!"
+# git push
