@@ -1,9 +1,9 @@
-St=8
+St=512
 Fin=1073741824
 
-for (( fileNum=1; fileNum<=4; fileNum=fileNum+1 ))
+for (( fileNum=5; fileNum<=5; fileNum=fileNum+1 ))
 do
-	for (( p=1; p<=16; p=p*2 ))
+	for (( p=1; p<=1024; p=p*2 ))
 	do
 		for (( i=$St; i<=$Fin; i=i*2 ))
 		do  
@@ -22,7 +22,7 @@ done
 
 
 
-cd ..
-git add .
-git commit -m "Asgn_9 all files added!"
-git push
+# cd ..
+# git add .
+# git commit -m "Asgn_9 all files added!"
+# git push
